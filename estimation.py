@@ -106,7 +106,7 @@ class Estimation:
     def compare_signature_lengths(self, sign_len_list):
         """
         Оценка точности приближенной схожести относительно длины сигнатуры.
-        :param sign_len_list:  список количества документов на каждом шаге
+        :param sign_len_list:  список длин сигнатур на каждом шаге
         :return:
         """
         print("Evaluating approximation precision:")
@@ -285,7 +285,7 @@ class Estimation:
         plt.figure()
         plt.plot(sign_len_list, mean, label='Среднее значение ошибки')
 
-        plt.title("Среднее значение величины ошибки по мере увеличения длины сигнатуры.",
+        plt.title("Зависимость величины ошибки от длины сигнатуры",
                 fontsize=12)
         plt.xlabel("Длина сигнатуры", fontsize=12)
         plt.xscale('log', basex=3)
@@ -321,7 +321,7 @@ if __name__ == "__main__":
     k = 5
     threshold = 0.6
     signature_len = 100
-    nr_docs_list = [5, 10, 20, 50, 100, 500, 1000, 2000, 4000]
+    nr_docs_list = [5, 10, 20, 50, 100, 500, 1000]#, 2000, 4000]
     sign_len_list = [int(3**(x*0.1)) for x in range(40, 100, 1)]  # List of signatures to compare the approximation on
 
 
@@ -334,9 +334,9 @@ if __name__ == "__main__":
     eval = Estimation(small_file, large_file, max(nr_docs_list), char_dim, k, threshold, signature_len)
 
     print("-----------------------------------------")
-    eval.find_similar_docs()
+    #eval.find_similar_docs()
     print("-----------------------------------------")
-    eval.eval_scalability(nr_docs_list)
+    #eval.eval_scalability(nr_docs_list)
     print("-----------------------------------------")
     eval.compare_signature_lengths(sign_len_list)
     print("-----------------------------------------")
